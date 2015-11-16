@@ -9,9 +9,9 @@ router.get('/', function(req, res, next) {
     if (err) {
       return console.error('error fetching client from pool', err);
     }
-    client.query('SELECT * FROM tacos', function(err, result) {
+    client.query('SELECT * FROM resorts', function(err, result) {
       done();
-      res.render('tacos/index', {tacos: result.rows})
+      res.render('resorts/index', {resorts: result.rows})
       if (err) {
         return console.error('error running query', err);
       }
