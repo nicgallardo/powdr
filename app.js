@@ -7,6 +7,7 @@ var cookieSession = require('cookie-session');
 var bodyParser = require('body-parser');
 var FacebookStrategy = require('passport-facebook');
 var passport = require('passport');
+var cors = require('cors');
 require('dotenv').load();
 passport.authenticate();
 
@@ -18,7 +19,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
+app.use(cors());
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));

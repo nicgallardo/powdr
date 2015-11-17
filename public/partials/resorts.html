@@ -1,0 +1,34 @@
+  
+    <ul class="nav navbar-nav">
+        <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><span class="btn btn-primary dropdown-toggle">Choose a Ski Area {{viewBarState}}</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#" ng-click="state('vail')">Vail</a></li>
+          <li><a href="#" ng-click="state('snowmass')">Snowmass</a></li>
+          <li><a href="#" ng-click="state('telluride')">Telluride</a></li>
+          <li><a href="#" ng-click="state('keystone')">Keystone</a></li>
+          <li><a href="#" ng-click="state('breckenridge')">Breckenridge</a></li> 
+       </ul>
+      </li>
+     </ul>
+    <br>
+   <input type="text" ng-model="something">
+   <p>{{something}}
+
+    <h1 class="well"> {{viewBarState}} {{snotelData['Snow Depth (in)']}} <img src={{weather.hourly[7].top[0].weatherIconUrl[0].value}}> </h1>
+
+      <div class="well">
+        <p>Location: {{site.query}}</p>
+        <p>Date: {{weather.date}}</p>
+        <p>Total Snowfall CM: {{weather.totalSnowfall_cm}}</p>
+        <p>Bottom Max Temp: {{weather.bottom[0].maxtempF}}</p>
+        <p>Bottom Min Temp: {{weather.bottom[0].mintempF}}</p>
+        <p>Top Max Temp: {{weather.top[0].maxtempF}}</p>
+        <p>Top Min Temp: {{weather.top[0].mintempF}}</p>
+        <p>Chance of Snow: {{weather.chanceofsnow}}% </p>
+        <p>Tonight low: {{weather.hourly[7].top[0].tempF}}</p>
+       
+      </div>
+      
+    
+        

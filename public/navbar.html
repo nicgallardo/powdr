@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse" ng-app="HomeController">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -12,7 +12,20 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#">resorts<span class="sr-only">(current)</span></a></li>
+        <li>
+          <ul class="nav navbar-nav" ng-app="ResortController">
+        <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Ski Resorts<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/resorts" ng-click="state('vail')">Vail</a></li>
+          <li><a href="/resorts" ng-click="state('snowmass')">Snowmass</a></li>
+          <li><a href="/resorts" ng-click="state('telluride')">Telluride</a></li>
+          <li><a href="/resorts" ng-click="state('keystone')">Keystone</a></li>
+          <li><a href="/resorts" ng-click="state('breckenridge')">Breckenridge</a></li> 
+       </ul></li>
+
+
+
         <li><a href="#">favorite resorts</a></li>
         <li><a href="#">cold spots</a></li>
       </ul>
