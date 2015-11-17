@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var pg = require('pg');
-var conString = "postgres://@localhost/resorts";
+var conString = "postgres://@localhost/powdr";
 
 router.get('/', function(req, res, next) {
   pg.connect(conString, function(err, client, done) {
