@@ -12,6 +12,7 @@ var bodyParser = require('body-parser');
 
 
 var routes = require('./routes/index');
+var resorts = require('./routes/resorts');
 
 var app = express();
 
@@ -24,7 +25,7 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+// app.use(cookieParser());
 
 // app.use(cookieSession({
 //   name: process.env.COOKIE_SESSION_NAME,
@@ -96,6 +97,7 @@ app.use(function(req, res, next){
   next()
 })
 app.use('/', routes);
+app.use('/resorts', resorts);
 // app.use('/leagues', leagues);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

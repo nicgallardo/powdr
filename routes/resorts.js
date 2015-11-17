@@ -11,13 +11,16 @@ router.get('/', function(req, res, next) {
     }
     client.query('SELECT * FROM resorts', function(err, result) {
       done();
-      res.render('resorts/index', {resorts: result.rows})
+      res.render('resorts/index', {resorts: result})
       if (err) {
         return console.error('error running query', err);
       }
-      console.log(result.rows[0].number);
+      console.log(result.rows[0]);
       console.log("connected to database");
     });
 
   });
 });
+
+
+module.exports = router;
