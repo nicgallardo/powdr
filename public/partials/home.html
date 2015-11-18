@@ -1,10 +1,11 @@
 <h3>{{message}}</h3>
-<div>
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2 text-center">
-      <h3>Powdr
-      <span>class="text-info">Your resorts. Your Conditions.</span>
-      </h3>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="jumbotron text-center" ng-repeat="resort in allResorts"><a ng-href="/{{resort.id}}">
+      <div class="col-md-12">
+        {{resort.name}}<br>
+        {{resort.id}}<br>
+      </div></a>
     </div>
   </div>
 </div>

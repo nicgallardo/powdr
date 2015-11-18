@@ -6,9 +6,9 @@ app.config(function($routeProvider, $locationProvider) {
         templateUrl: '/partials/home.html',
         controller: 'HomeController'
       })
-      .when('/auth/facebook', {controller: function(){
-        window.location.pathname = "/auth/facebook"
-        console.log("route");
-      }})
+      .when('/:resortId', {
+        templateUrl: '/partials/resort.html',
+        controller: 'ResortController'
+      })
     $locationProvider.html5Mode(true);
 })
