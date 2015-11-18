@@ -43,6 +43,7 @@ passport.use(new FacebookStrategy({
     enableProof: false
   },
   function(accessToken, refreshToken, profile, done) {
+    console.log(profile);
     var fullName = profile.displayName.split(" "),
         userFirstName = fullName[0],
         userLastName = fullName[1]
@@ -50,8 +51,7 @@ passport.use(new FacebookStrategy({
     pg.connect(conString, function(err, client, done) {
       if (err) return console.error('error fetching client from pool', err);
       client.query("SELECT * FROM users WHERE facebookid = $1;", [profile.id], function (err, result) {
-        console.log(result);
-        if(result.rows[0].facebookid == null){
+        if(result.rows.length===0){
           client.query("INSERT INTO users (firstname, lastname, facebookid) VALUES ($1, $2, $3) RETURNING id;", [userFirstName, userLastName, profile.id]);
         }
         if (err) return console.error('error running query', err);
