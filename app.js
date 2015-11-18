@@ -12,6 +12,7 @@ passport.authenticate();
 var pg = require('pg');
 var conString = "postgres://@localhost/powdr";
 
+
 var routes = require('./routes/index');
 
 var app = express();
@@ -29,7 +30,7 @@ app.use(cookieParser());
 
 app.use(cookieSession({
   name: process.env.COOKIE_SESSION_NAME,
-  keys: [process.env.KEY2, process.env.KEY2]
+  keys: [process.env.KEY1, process.env.KEY2]
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -42,41 +43,32 @@ passport.use(new FacebookStrategy({
     enableProof: false
   },
   function(accessToken, refreshToken, profile, done) {
-    splitName(profile.displayName);
+    var fullName = profile.displayName.split(" "),
+        userFirstName = fullName[0],
+        userLastName = fullName[1]
 
-    var firstName, lastName;
-    function splitName(string){
-      var array = string.trim().split(" ");
-      userFirstName = array[0];
-      userLastName = array[1];
-    }
     pg.connect(conString, function(err, client, done) {
-      if (err) {
-        return console.error('error fetching client from pool', err);
-      }
-      client.query("SELECT * FROM users WHERE facebookId = '" + profile.id + "';" , function(err, user) {
-        console.log(user);
-        if(user.rows[0].facebookid == null){
-          client.query("INSERT INTO users VALUES (default, '" + userFirstName + "', "+ "'" + userLastName + "', " + "'" + profile.id + "') RETURNING id;");
-        } else {
-          done(null, {facebookId: profile.id, firstName: userFirstName, lastName: userLastName, token: accessToken})
+      if (err) return console.error('error fetching client from pool', err);
+
+      client.query("SELECT * FROM users WHERE facebookId = '" + profile.id + "';" , function(err, result) {
+        console.log(result);
+        if(result.rows[0].facebookid == null){
+          client.query("INSERT INTO users VALUES (default, '" + userFirstName + "', "+ "'" + userLastName + "', " + "'" + profile.id + "');");
+          // client.query("INSERT INTO users (firstname, lastname, facebookid) VALUES ($1, $2, $3) RETURNING id;", [userFirstName, ... ]);
         }
-        done();
-        if (err) {
-          return console.error('error running query', err);
-        }
+
+        if (err) return console.error('error running query', err);
         console.log("connected to powdr database");
       });
     });
+    return done(null, { facebookId: profile.id, firstName: userFirstName, lastName: userLastName, token: accessToken });
   }
 ));
-
-  
 
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
-    res.redirect('/user-home');
+    res.redirect('/');
   });
 
 app.get('/auth/facebook',

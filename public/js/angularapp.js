@@ -7,7 +7,7 @@ app.config(function($routeProvider, $locationProvider) {
         controller: 'HomeController'
       })
       .when('/auth/facebook', {
-        controller: 'FacebookController',
+        controller: 'HomeController',
         redirectTo: '/auth/facebook'
       })
     $locationProvider.html5Mode(true);

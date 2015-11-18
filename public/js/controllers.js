@@ -4,9 +4,4 @@ app.controller('HomeController', ['$scope', '$http', function ($scope, $http, $l
     console.log($scope.data)
   });
   $scope.message = 'Home Page'
-  
-}]);
-
-app.controller('FacebookController', ['$scope', '$http', function ($scope, $http, $location) {
-  
 }]);
