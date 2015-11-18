@@ -6,9 +6,6 @@ app.config(function($routeProvider, $locationProvider) {
         templateUrl: '/partials/home.html',
         controller: 'HomeController'
       })
-      .when('/auth/facebook', {
-        controller: 'HomeController',
-        redirectTo: '/auth/facebook'
-      })
+
     $locationProvider.html5Mode(true);
 })
