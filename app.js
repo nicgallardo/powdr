@@ -9,7 +9,8 @@ var FacebookStrategy = require('passport-facebook');
 var passport = require('passport');
 require('dotenv').load();
 passport.authenticate();
-
+var pg = require('pg');
+var conString = "postgres://@localhost/powdr";
 
 var routes = require('./routes/index');
 
@@ -49,23 +50,28 @@ passport.use(new FacebookStrategy({
       userFirstName = array[0];
       userLastName = array[1];
     }
-    return Users.findOne({facebookId: profile.id}).then(function(user){
-      // console.log(user);
-      if(user == null){
-        Users.insert({
-          facebookId: profile.id,
-          firstName: userFirstName,
-          lastName: userLastName
-        });
-      } else {
-        Users.findOne({facebookId: profile.id}, function(err, user){
-          // console.log(user);
-          done(null, {facebookId: profile.id, firstName: userFirstName, lastName: userLastName, token: accessToken})
-        })
+    pg.connect(conString, function(err, client, done) {
+      if (err) {
+        return console.error('error fetching client from pool', err);
       }
-    })
+      client.query("SELECT * FROM users WHERE facebookId = '" + profile.id + "';" , function(err, user) {
+        console.log(user);
+        if(user.rows[0].facebookid == null){
+          client.query("INSERT INTO users VALUES (default, '" + userFirstName + "', "+ "'" + userLastName + "', " + "'" + profile.id + "') RETURNING id;");
+        } else {
+          done(null, {facebookId: profile.id, firstName: userFirstName, lastName: userLastName, token: accessToken})
+        }
+        done();
+        if (err) {
+          return console.error('error running query', err);
+        }
+        console.log("connected to powdr database");
+      });
+    });
   }
 ));
+
+  
 
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),

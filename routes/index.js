@@ -11,11 +11,10 @@ router.get('/api/v1/allResorts', function(req, res, next) {
     }
     client.query('SELECT * FROM resorts', function(err, result) {
       done();
-      res.render('resorts/index', {resorts: result})
+      res.json(result.rows)
       if (err) {
         return console.error('error running query', err);
       }
-      console.log(result.rows[0]);
       console.log("connected to powdr database");
     });
 
