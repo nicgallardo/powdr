@@ -1,1 +1,25 @@
-<h3>{{message}}</h3>
+
+
+<h1 class="well"> Powdr the home of White Lines</h1>
+
+   <table class="table table-hover">
+        <th>Location</th>
+        <th>Date</th>
+        <th>Total Snowfall CM</th>
+        <th>Max Temp</th>
+        <th>Min Temp</th>
+        <th>Chance of Snow</th>
+        <th>Tonights low</th>
+        <th>ICON</th>
+      <tr></tr>
+    
+        <td>{{site.query}}</td>
+        <td>{{weather.date}}</td>
+        <td>{{weather.totalSnowfall_cm}}</td>
+        <td>{{weather.bottom[0].maxtempF}} </td>
+        <td>{{weather.bottom[0].mintempF}} </td>
+        <td>{{weather.chanceofsnow}}% </td>
+        <td>{{weather.hourly[7].top[0].tempF}}</td>
+        <td><img src={{weather.hourly[7].top[0].weatherIconUrl[0].value}}></td>
+      </ul>
+    </table>

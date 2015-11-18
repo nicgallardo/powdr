@@ -1,13 +1,13 @@
-  
+  <span class="resorts">
     <ul class="nav navbar-nav">
         <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><span class="btn btn-primary dropdown-toggle">Choose a Ski Area {{viewBarState}}</span></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><span class="btn btn-primary dropdown-toggle">Choose a Ski Area {{viewBarResort}}</span></a>
         <ul class="dropdown-menu">
-          <li><a href="#" ng-click="state('vail')">Vail</a></li>
-          <li><a href="#" ng-click="state('snowmass')">Snowmass</a></li>
-          <li><a href="#" ng-click="state('telluride')">Telluride</a></li>
-          <li><a href="#" ng-click="state('keystone')">Keystone</a></li>
-          <li><a href="#" ng-click="state('breckenridge')">Breckenridge</a></li> 
+          <li><a href="#" ng-click="Resort('vail')">Vail</a></li>
+          <li><a href="#" ng-click="Resort('snowmass')">Snowmass</a></li>
+          <li><a href="#" ng-click="Resort('telluride')">Telluride</a></li>
+          <li><a href="#" ng-click="Resort('keystone')">Keystone</a></li>
+          <li><a href="#" ng-click="Resort('breckenridge')">Breckenridge</a></li> 
        </ul>
       </li>
      </ul>
@@ -15,9 +15,9 @@
    <input type="text" ng-model="something">
    <p>{{something}}
 
-    <h1 class="well"> {{viewBarState}} {{snotelData['Snow Depth (in)']}} <img src={{weather.hourly[7].top[0].weatherIconUrl[0].value}}> </h1>
+    <h1 class="well"> {{viewBarResort}} {{snotelData['Snow Depth (in)']}} <img src={{weather.hourly[7].top[0].weatherIconUrl[0].value}}> </h1>
 
-      <div class="well">
+      <div class="well col-md-4">
         <p>Location: {{site.query}}</p>
         <p>Date: {{weather.date}}</p>
         <p>Total Snowfall CM: {{weather.totalSnowfall_cm}}</p>
@@ -26,9 +26,35 @@
         <p>Top Max Temp: {{weather.top[0].maxtempF}}</p>
         <p>Top Min Temp: {{weather.top[0].mintempF}}</p>
         <p>Chance of Snow: {{weather.chanceofsnow}}% </p>
+        <p>Wind Direction: {{weather.hourly[7].top[0].winddir16Point}}</p>
+        <p>Wind Speed: {{weather.hourly[7].top[0].windspeedMiles}}</p>
         <p>Tonight low: {{weather.hourly[7].top[0].tempF}}</p>
+         <ng-map center="[{{viewBarResort}}, CO]"></ng-map>
+         <span>Loation found using HTML5.</span>
+         
        
       </div>
-      
+    <div class="well col-md-4">
+      <h5>Long Term Forecast</h5>
+      <p>{{weatherUnder[0].title}}: {{weatherUnder[0].fcttext}}</p>
+      <p>{{weatherUnder[1].title}}: {{weatherUnder[1].fcttext}}</p>
+      <p>{{weatherUnder[2].title}}: {{weatherUnder[2].fcttext}}</p>
+      <p>{{weatherUnder[3].title}}: {{weatherUnder[3].fcttext}}</p>
+      <p>{{weatherUnder[4].title}}: {{weatherUnder[4].fcttext}}</p>
+      <p>{{weatherUnder[5].title}}: {{weatherUnder[5].fcttext}}</p>
+      <p>{{weatherUnder[6].title}}: {{weatherUnder[6].fcttext}}</p>
+      <p>{{weatherUnder[7].title}}: {{weatherUnder[7].fcttext}}</p>
+    </div>
+    <div class="well col-md-4 flickr">
+      <h5>{{viewBarResort}} Flickr Feed</h5>
+      <img src={{flickrFeed[0].media.m}}>
+      <img src={{flickrFeed[1].media.m}}>
+      <img src={{flickrFeed[2].media.m}}>
+      <img src={{flickrFeed[3].media.m}}>
+    </div>
+
+   
+
+    
     
         
