@@ -70,7 +70,7 @@ passport.use(new FacebookStrategy({
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
-    res.redirect('/user-home');
+    res.redirect('/');
   });
 
 app.get('/auth/facebook',
