@@ -3,10 +3,20 @@
 <h3>latitude: {{resortInfo.latitude}}</h3>
 <h3>longitude: {{resortInfo.longitude}}</h3>
 <h3>website: {{resortInfo.official_website}}</h3> -->
+<div class="well">
 
- <h1 class="well"> {{resortInfo.name}}  <img src={{weather.hourly[7].top[0].weatherIconUrl[0].value}} class="align-right"> </h1>
+        <li class="dropdown Drop">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><span class="btn btn-primary dropdown-toggle">Choose a Ski Area</span></a>
+       
+          <ul class="dropdown-menu DropDown">
+            <li ng-repeat='resort in allResorts'><a ng-href="/{{resort.id}}">{{resort.name}}</a></li>
+         </ul>
+        </li>
+       </ul>
 
-      <div class="well col-md-4">
+ <h1> {{resortInfo.name}}  <img src={{weather.hourly[7].top[0].weatherIconUrl[0].value}}> </h1>
+</div>
+      <div class="well col-md-4 resortInfo">
         <p>Location: {{resortInfo.name}}</p>
         <p>Date: {{weather.date}}</p>
         <p>Total Snowfall CM: {{weather.totalSnowfall_cm}}</p>
@@ -26,7 +36,7 @@
          
        
       </div>
-    <div class="well col-md-4">
+    <div class="well col-md-4 weather">
       <h5>Long Term Forecast</h5>
       <p>{{weatherUnder[0].title}}: {{weatherUnder[0].fcttext}}</p>
       <p>{{weatherUnder[1].title}}: {{weatherUnder[1].fcttext}}</p>

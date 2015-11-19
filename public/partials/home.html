@@ -2,8 +2,8 @@
 <div ng-repeat='resort in allResorts | filter: search'>
   <div class='row well'><a ng-href="/{{resort.id}}">
     <div class='col-md-6 goats'>
-      <h1>{{resort.name}}</h1>
-      <p>Annual Snowfall: {{resort.annual_snowfall}}</p>
+      <h1>{{resort.name}}</h1></a>
+      <p>Annual Snowfall: {{resort.annual_snowfall}}{{search}}</p>
       <p>Bottom Elevation: {{resort.bottom_elevation}}</p>
       <p>Top Elevation: {{resort.top_elevation}}</p>
       <p>Number of Lifts: {{resort.lift_count}}</p>
@@ -15,6 +15,6 @@
       <ng-map center="[{{resort.latitude}},{{resort.longitude}}]"></ng-map>
 
 
-    </div></a>
+    </div>
   </div>
 </div>
