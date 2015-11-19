@@ -12,9 +12,4 @@ router.get('*', function(req, res, next) {
   });
 });
 
-// router.get('/api/v1/resortData/:resort', function(req, res, next) {
-//   res.json(resortData)
-// });
-
-
 module.exports = router;
