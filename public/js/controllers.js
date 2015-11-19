@@ -1,28 +1,21 @@
-app.controller('HomeController', ['$scope', '$http','$rootScope', function ($scope, $http, $location, $rootScope, NgMap) {
+app.controller('HomeController', ['$scope', '$http','$window','$rootScope', function ($scope, $http, $location, $rootScope, NgMap) {
 
   $http.get('/api/v1/resortData').then(function (response) {
     $scope.allResorts = response.data;
-    // console.log($scope.allResorts)
   });
   $scope.message = 'All Resorts Page'
   $http.get('/_=_').then(function (response) {
-    $rootScope.session = response.data;
+    $rootScope.user = response.data;
     }).then(function () {
-      console.log($rootScope.session);
+      console.log($rootScope.user);
     })
-
-  // NgMap.getMap().then(function(map) {
-  //     console.log(map.getCenter());
-  //     console.log('markers', map.markers);
-  //     console.log('shapes', map.shapes);
-      
-  //   })
 }]);
 
-app.controller('ResortController', ['$scope', '$http', '$routeParams','$window', '$rootScope', function ($scope, $http, $routeParams, $rootScope, NgMap) {
+
+app.controller('ResortController', ['$scope', '$http', '$routeParams','$window', '$rootScope', function ($scope, $http, $routeParams, $rootScope, $window, NgMap) {
   $scope.resortId = $routeParams.resortId;
-    console.log($scope.session);
-  // console.log($scope.resortId)
+        console.log($scope.user);
+
   $http.get('/api/v1/resortData').then(function (response) {
     $scope.allResorts = response.data;
     for(var i=0; i < $scope.allResorts.length; i++) {
