@@ -1,10 +1,15 @@
-app.controller('HomeController', ['$scope', '$http', function ($scope, $http, $location, NgMap) {
+app.controller('HomeController', ['$scope', '$http','$rootScope', function ($scope, $http, $location, $rootScope, NgMap) {
 
   $http.get('/api/v1/resortData').then(function (response) {
     $scope.allResorts = response.data;
-    console.log($scope.allResorts)
+    // console.log($scope.allResorts)
   });
   $scope.message = 'All Resorts Page'
+  $http.get('/_=_').then(function (response) {
+    $rootScope.session = response.data;
+    }).then(function () {
+      console.log($rootScope.session);
+    })
 
   // NgMap.getMap().then(function(map) {
   //     console.log(map.getCenter());
@@ -14,15 +19,16 @@ app.controller('HomeController', ['$scope', '$http', function ($scope, $http, $l
   //   })
 }]);
 
-app.controller('ResortController', ['$scope', '$http', '$routeParams', '$rootScope', function ($scope, $http, $routeParams, $rootScope, NgMap) {
+app.controller('ResortController', ['$scope', '$http', '$routeParams','$window', '$rootScope', function ($scope, $http, $routeParams, $rootScope, NgMap) {
   $scope.resortId = $routeParams.resortId;
-  console.log($scope.resortId)
+    console.log($scope.session);
+  // console.log($scope.resortId)
   $http.get('/api/v1/resortData').then(function (response) {
     $scope.allResorts = response.data;
     for(var i=0; i < $scope.allResorts.length; i++) {
       if ($scope.allResorts[i].id === $scope.resortId) {
         $scope.resortInfo = $scope.allResorts[i]
-        console.log($scope.resortInfo)
+        // console.log($scope.resortInfo)
       }
     }
     
