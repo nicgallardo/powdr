@@ -12,7 +12,6 @@ passport.authenticate();
 var pg = require('pg');
 var conString = "postgres://@localhost/powdr";
 
-
 var routes = require('./routes/index');
 
 var app = express();
@@ -43,7 +42,7 @@ passport.use(new FacebookStrategy({
     profileFields: ['id', 'displayName', 'link', 'photos', 'email']
   },
   function(accessToken, refreshToken, profile, done) {
-    // console.log(profile._json.picture.data);
+
     var fullName = profile.displayName.split(" "),
         userFirstName = fullName[0],
         userLastName = fullName[1]
@@ -92,7 +91,7 @@ app.use(function(req, res, next){
   next()
 })
 app.use('/', routes);
-// app.use('/leagues', leagues);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

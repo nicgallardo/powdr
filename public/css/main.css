@@ -1,0 +1,19 @@
+body{
+  background: url('http://www.independentskiermag.com/blog/wp-content/uploads/2014/05/13-J-011_2100x1400_300_RGB.jpg')no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;;
+  height: 100%;
+}
+.well{
+  opacity: 0.9;
+}
+.flickr img{
+  width: 19%;
+  height: 150px;
+  text-align: center;
+}
+.maps{
+  height: 500px;
+}
