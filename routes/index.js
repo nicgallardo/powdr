@@ -4,6 +4,9 @@ var pg = require('pg');
 var conString = "postgres://@localhost/powdr";
 
 
+router.get('**/**', function (req, res, next) {
+  res.json(req.session);
+})
 router.get('/api/v1/allResorts', function(req, res, next) {
   pg.connect(conString, function(err, client, done) {
 

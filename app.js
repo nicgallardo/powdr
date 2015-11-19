@@ -16,7 +16,6 @@ var conString = "postgres://@localhost/powdr";
 var routes = require('./routes/index');
 
 var app = express();
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -40,10 +39,11 @@ passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
     callbackURL: "http://localhost:3000/auth/facebook/callback",
-    enableProof: false
+    enableProof: false,
+    profileFields: ['id', 'displayName', 'link', 'photos', 'email']
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log(profile);
+    // console.log(profile._json.picture.data);
     var fullName = profile.displayName.split(" "),
         userFirstName = fullName[0],
         userLastName = fullName[1]

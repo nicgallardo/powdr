@@ -1,4 +1,4 @@
-var app = angular.module('powdrApp', ['ngRoute'])
+var app = angular.module('powdrApp', ['ngRoute','ngCookies'])
 
 app.config(function($routeProvider, $locationProvider) {
     $routeProvider
@@ -6,6 +6,5 @@ app.config(function($routeProvider, $locationProvider) {
         templateUrl: '/partials/home.html',
         controller: 'HomeController'
       })
-
     $locationProvider.html5Mode(true);
 })
