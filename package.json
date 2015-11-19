@@ -15,8 +15,11 @@
     "express": "~4.13.1",
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
+    "ngmap": "^1.14.14",
     "passport": "^0.3.2",
     "passport-facebook": "^2.0.0",
-    "serve-favicon": "~2.3.0"
+    "pg": "^4.4.3",
+    "serve-favicon": "^2.3.0",
+    "xml2js": "^0.4.15"
   }
 }

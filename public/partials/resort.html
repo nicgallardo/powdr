@@ -1,0 +1,60 @@
+<!-- <h3>name: {{resortInfo.name}}</h3>
+<h3>id: {{resortInfo.id}}</h3>
+<h3>latitude: {{resortInfo.latitude}}</h3>
+<h3>longitude: {{resortInfo.longitude}}</h3>
+<h3>website: {{resortInfo.official_website}}</h3> -->
+
+ <h1 class="well"> {{resortInfo.name}}  <img src={{weather.hourly[7].top[0].weatherIconUrl[0].value}} class="align-right"> </h1>
+
+      <div class="well col-md-4">
+        <p>Location: {{resortInfo.name}}</p>
+        <p>Date: {{weather.date}}</p>
+        <p>Total Snowfall CM: {{weather.totalSnowfall_cm}}</p>
+        <p>Bottom Max Temp: {{weather.bottom[0].maxtempF}}</p>
+        <p>Bottom Min Temp: {{weather.bottom[0].mintempF}}</p>
+        <p>Top Max Temp: {{weather.top[0].maxtempF}}</p>
+        <p>Top Min Temp: {{weather.top[0].mintempF}}</p>
+        <p>Chance of Snow: {{weather.chanceofsnow}}% </p>
+        <p>Wind Direction: {{weather.hourly[7].top[0].winddir16Point}}</p>
+        <p>Wind Speed: {{weather.hourly[7].top[0].windspeedMiles}}</p>
+        <p>Tonight's low: {{weather.hourly[7].top[0].tempF}}</p>
+        <p>Annual Snowfall: {{resortInfo.annual_snowfall}}</p>
+        <p>Bottom Elevation: {{resortInfo.bottom_elevation}}</p>
+        <p>Top Elevation: {{resortInfo.top_elevation}}</p>
+        <p>Number of Lifts: {{resortInfo.lift_count}}</p>
+        <a href={{resortInfo.official_website}}> {{resortInfo.name}}</a>
+         
+       
+      </div>
+    <div class="well col-md-4">
+      <h5>Long Term Forecast</h5>
+      <p>{{weatherUnder[0].title}}: {{weatherUnder[0].fcttext}}</p>
+      <p>{{weatherUnder[1].title}}: {{weatherUnder[1].fcttext}}</p>
+      <p>{{weatherUnder[2].title}}: {{weatherUnder[2].fcttext}}</p>
+      <p>{{weatherUnder[3].title}}: {{weatherUnder[3].fcttext}}</p>
+      <p>{{weatherUnder[4].title}}: {{weatherUnder[4].fcttext}}</p>
+      <p>{{weatherUnder[5].title}}: {{weatherUnder[5].fcttext}}</p>
+      <p>{{weatherUnder[6].title}}: {{weatherUnder[6].fcttext}}</p>
+      <p>{{weatherUnder[7].title}}: {{weatherUnder[7].fcttext}}</p>
+    </div>
+    <div class="well col-md-4 maps">
+
+
+
+        <ng-map center="[{{resortInfo.latitude}},{{resortInfo.longitude}}]"></ng-map>
+        
+      
+    </div>
+    <div class="well col-md-12 flickr">
+      <h5>{{resortInfo.name}} Flickr Feed</h5>
+      <img src={{flickrFeed[0].media.m}}>
+      <img src={{flickrFeed[1].media.m}}>
+      <img src={{flickrFeed[2].media.m}}>
+      <img src={{flickrFeed[3].media.m}}>
+      <img src={{flickrFeed[4].media.m}}>
+      <img src={{flickrFeed[5].media.m}}>
+      <img src={{flickrFeed[6].media.m}}>
+      <img src={{flickrFeed[7].media.m}}>
+      <img src={{flickrFeed[8].media.m}}>
+      <img src={{flickrFeed[9].media.m}}>
+    </div>
