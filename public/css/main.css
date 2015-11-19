@@ -10,6 +10,10 @@ body{
   opacity: 0.9;
 }
 .flickr img{
-  width: 100%;
-
+  width: 19%;
+  height: 150px;
+  text-align: center;
+}
+.maps{
+  height: 500px;
 }
