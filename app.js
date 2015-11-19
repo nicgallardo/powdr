@@ -29,7 +29,7 @@ app.use(cookieParser());
 
 app.use(cookieSession({
   name: process.env.COOKIE_SESSION_NAME,
-  keys: [process.env.KEY2, process.env.KEY2]
+  keys: [process.env.KEY1, process.env.KEY2]
 }));
 app.use(passport.initialize());
 app.use(passport.session());
