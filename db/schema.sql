@@ -1,6 +1,5 @@
 DROP TABLE IF EXISTS users CASCADE;
-DROP TABLE IF EXISTS resorts CASCADE;
-DROP TABLE IF EXISTS favorites;
+DROP TABLE IF EXISTS favorites CASCADE;
 
 CREATE TABLE users (
   id serial primary key,
@@ -9,13 +8,8 @@ CREATE TABLE users (
   facebookId varchar(60)
 );
 
-CREATE TABLE resorts (
-  id serial primary key,
-  name varchar(80)
-);
-
 CREATE TABLE favorites (
   id serial primary key,
-  user_id int references users(id) on delete cascade,
-  resort_id int references resorts(id) on delete cascade
+  facebook_id varchar(60),
+  resort_id varchar(4)
 );

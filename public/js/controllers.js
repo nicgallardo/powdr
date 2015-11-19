@@ -12,7 +12,6 @@ app.controller('HomeController', ['$scope', '$http','$window','$rootScope', func
 }]);
 
 app.controller('UserController', ['$scope', '$http', '$routeParams', '$window', '$rootScope', function($scope, $http, $routeParams, $rootScope, $window){
-  
 
 }])
 
