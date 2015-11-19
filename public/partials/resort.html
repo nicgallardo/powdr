@@ -4,7 +4,7 @@
 <h3>longitude: {{resortInfo.longitude}}</h3>
 <h3>website: {{resortInfo.official_website}}</h3> -->
 
- <h1 class="well"> {{resortInfo.name}}  <img src={{weather.hourly[7].top[0].weatherIconUrl[0].value}}> </h1>
+ <h1 class="well"> {{resortInfo.name}}  <img src={{weather.hourly[7].top[0].weatherIconUrl[0].value}} class="align-right"> </h1>
 
       <div class="well col-md-4">
         <p>Location: {{resortInfo.name}}</p>
@@ -23,10 +23,6 @@
         <p>Top Elevation: {{resortInfo.top_elevation}}</p>
         <p>Number of Lifts: {{resortInfo.lift_count}}</p>
         <a href={{resortInfo.official_website}}> {{resortInfo.name}}</a>
-
-
-        <ng-map center="[{{resortInfo.latitude}},{{resortInfo.longitude}}]"></ng-map>
-        <span>Loation found using HTML5.</span>
          
        
       </div>
@@ -41,10 +37,24 @@
       <p>{{weatherUnder[6].title}}: {{weatherUnder[6].fcttext}}</p>
       <p>{{weatherUnder[7].title}}: {{weatherUnder[7].fcttext}}</p>
     </div>
-    <div class="well col-md-4 flickr">
+    <div class="well col-md-4 maps">
+
+
+
+        <ng-map center="[{{resortInfo.latitude}},{{resortInfo.longitude}}]"></ng-map>
+        <span>Loation found using HTML5.</span>
+      
+    </div>
+    <div class="well col-md-12 flickr">
       <h5>{{resortInfo.name}} Flickr Feed</h5>
       <img src={{flickrFeed[0].media.m}}>
       <img src={{flickrFeed[1].media.m}}>
       <img src={{flickrFeed[2].media.m}}>
       <img src={{flickrFeed[3].media.m}}>
+      <img src={{flickrFeed[4].media.m}}>
+      <img src={{flickrFeed[5].media.m}}>
+      <img src={{flickrFeed[6].media.m}}>
+      <img src={{flickrFeed[7].media.m}}>
+      <img src={{flickrFeed[8].media.m}}>
+      <img src={{flickrFeed[9].media.m}}>
     </div>
