@@ -1,34 +1,31 @@
-app.factory('AppSharedService', function($rootScope){
-  var sharedService = {};
 
-  return sharedSerive
-})
 
-app.controller('HomeController', ['$scope', '$http', function ($scope, $http, $location, NgMap) {
+
+app.controller('HomeController', ['$scope', '$http','$window','$rootScope', function ($scope, $http, $location, $rootScope, NgMap) {
+
 
   $http.get('/api/v1/resortData').then(function (response) {
     $scope.allResorts = response.data;
-    console.log($scope.allResorts)
   });
   $scope.message = 'All Resorts Page'
-
-  // NgMap.getMap().then(function(map) {
-  //     console.log(map.getCenter());
-  //     console.log('markers', map.markers);
-  //     console.log('shapes', map.shapes);
-      
-  //   })
+  $http.get('/_=_').then(function (response) {
+    $rootScope.user = response.data;
+    }).then(function () {
+      console.log($rootScope.user);
+    })
 }]);
 
-app.controller('ResortController', ['$scope', '$http', '$routeParams', '$rootScope', function ($scope, $http, $routeParams, $rootScope, NgMap) {
+
+app.controller('ResortController', ['$scope', '$http', '$routeParams','$window', '$rootScope', function ($scope, $http, $routeParams, $rootScope, $window, NgMap) {
   $scope.resortId = $routeParams.resortId;
-  console.log($scope.resortId)
+        console.log($scope.user);
+
   $http.get('/api/v1/resortData').then(function (response) {
     $scope.allResorts = response.data;
     for(var i=0; i < $scope.allResorts.length; i++) {
       if ($scope.allResorts[i].id === $scope.resortId) {
         $scope.resortInfo = $scope.allResorts[i]
-        console.log($scope.resortInfo)
+        // console.log($scope.resortInfo)
       }
     }
 
@@ -60,4 +57,5 @@ app.controller('ResortController', ['$scope', '$http', '$routeParams', '$rootSco
 })
 
   $scope.message = 'Single Resort Page'
+
 }]);
