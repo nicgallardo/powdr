@@ -1,4 +1,4 @@
-app.controller('HomeController', ['$scope', '$http', function ($scope, $http, $location) {
+app.controller('HomeController', ['$scope', '$http', function ($scope, $http, $location, NgMap) {
 
   $http.get('/api/v1/resortData').then(function (response) {
     $scope.allResorts = response.data;
@@ -47,14 +47,8 @@ app.controller('ResortController', ['$scope', '$http', '$routeParams', '$rootSco
       // 'http://www.flickr.com/services/feeds/photos_public.gne?tags=37.776289,-122.395234&format=json'
     })
   
-      NgMap.getMap().then(function(map) {
-      console.log(map.getCenter());
-      console.log('markers', map.markers);
-      console.log('shapes', map.shapes);
-      
-    })
-
-  })
+    
+})
 
   $scope.message = 'Single Resort Page'
 

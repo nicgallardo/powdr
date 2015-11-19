@@ -17,3 +17,10 @@ body{
 .maps{
   height: 500px;
 }
+.goats{
+  float: left;
+}
+.tacos{
+  float: right;
+  width: 40%;
+}
