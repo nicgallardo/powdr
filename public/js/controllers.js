@@ -11,6 +11,10 @@ app.controller('HomeController', ['$scope', '$http','$window','$rootScope', func
     })
 }]);
 
+app.controller('UserController', ['$scope', '$http', '$routeParams', '$window', '$rootScope', function($scope, $http, $routeParams, $rootScope, $window){
+  
+
+}])
 
 app.controller('ResortController', ['$scope', '$http', '$routeParams','$window', '$rootScope', function ($scope, $http, $routeParams, $rootScope, $window, NgMap) {
   $scope.resortId = $routeParams.resortId;
@@ -24,7 +28,8 @@ app.controller('ResortController', ['$scope', '$http', '$routeParams','$window',
         // console.log($scope.resortInfo)
       }
     }
-    
+
+
       // $http.get("http://api.worldweatheronline.com/free/v2/ski.ashx?key=21315c00286c7db03c19ff752ba6c&q=" + $scope.resortInfo.latitude +',' + $scope.resortInfo.longitude + "+&format=json").then(function(response){
       // console.log(response.data.data)
       // $scope.weather = response.data.data.weather[0]
@@ -32,7 +37,7 @@ app.controller('ResortController', ['$scope', '$http', '$routeParams','$window',
       // "http://api.worldweatheronline.com/free/v2/ski.ashx?key=36ac695418a963238c6e44746bf57&q=37.776289,-122.395234&format=json"
       // "http://api.worldweatheronline.com/free/v2/ski.ashx?key=36ac695418a963238c6e44746bf57&q="+ $scope.resortInfo.name +"+co&format=json"
     // })
-  
+
     // $http.get("http://api.wunderground.com/api/2dc07206ff5e682e/geolookup/forecast/q/" + $scope.resortInfo.latitude +',' + $scope.resortInfo.longitude + ".json").then(function(response){
     //   console.log(response.data.forecast, "Look Over Here!")
     //   $scope.weatherUnder = response.data.forecast.txt_forecast.forecastday
@@ -45,8 +50,8 @@ app.controller('ResortController', ['$scope', '$http', '$routeParams','$window',
       // 'http://www.flickr.com/services/feeds/photos_public.gne?tags='+ $scope.resortInfo.name +'CO&format=json'
       // 'http://www.flickr.com/services/feeds/photos_public.gne?tags=37.776289,-122.395234&format=json'
     })
-  
-    
+
+
 })
 
   $scope.message = 'Single Resort Page'
