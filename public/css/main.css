@@ -5,6 +5,7 @@ body{
   -o-background-size: cover;
   background-size: cover;;
   height: 100%;
+  
 }
 .well{
   opacity: 0.9;
@@ -13,9 +14,11 @@ body{
   width: 19%;
   height: 150px;
   text-align: center;
+  z-index: -1;
 }
 .maps{
   height: 500px;
+  z-index: -1;
 }
 .goats{
   float: left;
@@ -23,4 +26,21 @@ body{
 .tacos{
   float: right;
   width: 40%;
+}
+.DropDown {
+
+  margin-top: 0px;
+  z-index: 999;
+}
+.flickr, .weather, .resortInfo{
+  z-index: -1;
+}
+  
+
+
+.Drop{
+  position: absolute;
+  z-index: 999;
+  top:20%;
+  left:80%;
 }
