@@ -30,6 +30,27 @@ router.post('/addFav', function(req, res, next){
   });
 })
 
+router.get('/isFav/:id', function(req, res, next){
+  console.log(req.params.id);
+  console.log(req.user.facebookId);
+  pg.connect(conString, function(err, client, done) {
+
+    if (err) {
+      return console.error('error fetching client from pool', err);
+    }
+    client.query('SELECT * favorites(facebook_id, resort_id) VALUES($1, $2);',[req.user.facebookId, req.params.id], function(err, result) {
+      done();
+      console.log(result);
+      // console.log(result.rows[0].length);
+      res.redirect('/' + req.body.resortId)
+      if (err) {
+        return console.error('error running query', err);
+      }
+    });
+  });
+})
+
+
 router.get('*', function(req, res, next) {
   res.sendFile('index.html', {
     root: __dirname + '/../public/'

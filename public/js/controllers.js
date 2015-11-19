@@ -15,9 +15,13 @@ app.controller('UserController', ['$scope', '$http', '$routeParams', '$window', 
 
 }])
 
-app.controller('ResortController', ['$scope', '$http', '$routeParams','$window', '$rootScope', function ($scope, $http, $routeParams, $rootScope, $window, NgMap) {
+app.controller('ResortController', ['$scope', '$http', '$routeParams','$window', '$location', '$rootScope', function ($scope, $http, $routeParams, $rootScope, $location, $window, NgMap) {
   $scope.resortId = $routeParams.resortId;
-        console.log($scope.user);
+  console.log($location.path());
+
+  $http.get('/isfav' + $location.path()).then(function (response){
+    $scope.isfav = response.data;
+  })
 
   $http.get('/api/v1/resortData').then(function (response) {
     $scope.allResorts = response.data;
