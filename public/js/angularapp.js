@@ -13,5 +13,8 @@ app.config(function($routeProvider, $locationProvider) {
         templateUrl: '/partials/resort.html',
         controller: 'ResortController'
       })
+      .otherwise({
+        redirect: '/'
+    });
     $locationProvider.html5Mode(true);
 })

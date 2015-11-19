@@ -7,7 +7,9 @@ router.get('/api/v1/resortData', function(req, res, next) {
 });
 
 router.get('*', function(req, res, next) {
-  res.render('index');
+  res.sendFile('index.html', {
+    root: __dirname + '/../public/'
+  });
 });
 
 // router.get('/api/v1/resortData/:resort', function(req, res, next) {
