@@ -11,5 +11,5 @@ CREATE TABLE users (
 CREATE TABLE favorites (
   id serial primary key,
   facebook_id varchar(60),
-  resort_id varchar(4)
+  resort_id varchar(10)
 );
