@@ -47,7 +47,7 @@ body{
   font-family: 'Anton', sans-serif;
 }
 h1{
-  font-size: 60px;
+  font-size: 30px;
 }
 
 .helper {
@@ -63,4 +63,8 @@ img {
   float: right;
   z-index: 999;
 
+}
+
+p {
+  font-family: sans-serif; 
 }
