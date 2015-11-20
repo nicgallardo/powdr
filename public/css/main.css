@@ -50,6 +50,14 @@ h1{
   font-size: 60px;
 }
 
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+img {
+    vertical-align: middle;
+}
 
 .Drop{
   float: right;
