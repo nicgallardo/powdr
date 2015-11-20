@@ -1,20 +1,22 @@
-<h3>{{message}}</h3>
-<div ng-repeat='resort in allResorts | filter: search'>
-  <div class='row well'><a ng-href="/{{resort.id}}">
-    <div class='col-md-6 goats'>
-      <h1>{{resort.name}}</h1></a>
-      <p>Annual Snowfall: {{resort.annual_snowfall * .39 | number:2}}</p>
-      <p>Bottom Elevation: {{resort.bottom_elevation * 3.28084 | number:2}}</p>
-      <p>Top Elevation: {{resort.top_elevation * 3.28084 | number:2}}</p>
-      <p>Number of Lifts: {{resort.lift_count}}</p>
-      <p>Number of Runs:{{resort.run_count}}
-      <p>Acreage: {{resort.skiable_acreage}}
-      <a href={{resort.official_website}}> {{resortInfo.name}}</a>
-    </div>
-    <div class= 'col-md-4 tacos'>
-      <!-- <ng-map center="[{{resort.latitude}},{{resort.longitude}}]"></ng-map> -->
+
+<div class="col-md-9 col-md-offset-1">
+  <div ng-repeat='resort in allResorts | filter: search'>
+    <div class='row well'><a ng-href="/{{resort.id}}">
+      <div class='col-md-6 goats'>
+        <h1 class="marquee">{{resort.name}}</h1></a>
+        <p>Annual Snowfall: {{resort.annual_snowfall * .39 | number:2}}</p>
+        <p>Bottom Elevation: {{resort.bottom_elevation * 3.28084 | number:2}}</p>
+        <p>Top Elevation: {{resort.top_elevation * 3.28084 | number:2}}</p>
+        <p>Number of Lifts: {{resort.lift_count}}</p>
+        <p>Number of Runs:{{resort.run_count}}
+        <p>Acreage: {{resort.skiable_acreage}}
+        <a href={{resort.official_website}}> {{resortInfo.name}}</a>
+      </div>
+      <div class= 'col-md-4 tacos'>
+        <!-- <ng-map center="[{{resort.latitude}},{{resort.longitude}}]"></ng-map> -->
 
 
+      </div>
     </div>
   </div>
 </div>
