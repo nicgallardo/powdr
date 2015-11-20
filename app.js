@@ -9,18 +9,18 @@ var FacebookStrategy = require('passport-facebook');
 var passport = require('passport');
 require('dotenv').load();
 passport.authenticate();
-
+var pg = require('pg');
+var conString = "process.env.DATABASE_URL || postgres://@localhost/powdr";
 
 var routes = require('./routes/index');
 
 var app = express();
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
-// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public/images', 'favicon.png')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -28,7 +28,7 @@ app.use(cookieParser());
 
 app.use(cookieSession({
   name: process.env.COOKIE_SESSION_NAME,
-  keys: [process.env.KEY2, process.env.KEY2]
+  keys: [process.env.KEY1, process.env.KEY2]
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -38,45 +38,40 @@ passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
     callbackURL: "http://localhost:3000/auth/facebook/callback",
-    enableProof: false
+    enableProof: false,
+    profileFields: ['id', 'displayName', 'link', 'photos', 'email']
   },
   function(accessToken, refreshToken, profile, done) {
-    splitName(profile.displayName);
 
-    var firstName, lastName;
-    function splitName(string){
-      var array = string.trim().split(" ");
-      userFirstName = array[0];
-      userLastName = array[1];
-    }
-    return Users.findOne({facebookId: profile.id}).then(function(user){
-      // console.log(user);
-      if(user == null){
-        Users.insert({
-          facebookId: profile.id,
-          firstName: userFirstName,
-          lastName: userLastName
-        });
-      } else {
-        Users.findOne({facebookId: profile.id}, function(err, user){
-          // console.log(user);
-          done(null, {facebookId: profile.id, firstName: userFirstName, lastName: userLastName, token: accessToken})
-        })
-      }
-    })
+    var fullName = profile.displayName.split(" "),
+        userFirstName = fullName[0],
+        userLastName = fullName[1]
+
+    pg.connect(conString, function(err, client, done) {
+      if (err) return console.error('error fetching client from pool', err);
+      client.query("SELECT * FROM users WHERE facebookid = $1;", [profile.id], function (err, result) {
+        if(result.rows.length===0){
+          client.query("INSERT INTO users (firstname, lastname, facebookid) VALUES ($1, $2, $3) RETURNING id;", [userFirstName, userLastName, profile.id]);
+        }
+        if (err) return console.error('error running query', err);
+        console.log("connected to powdr database");
+      })
+    });
+    return done(null, { facebookId: profile.id, firstName: userFirstName, lastName: userLastName, token: accessToken });
   }
 ));
 
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
-    res.redirect('/user-home');
+    res.redirect('/');
   });
 
 app.get('/auth/facebook',
   passport.authenticate('facebook'));
 
 app.get('/logout', function(req, res){
+  req.session = null;
   req.logout();
   res.redirect('/');
 });
@@ -96,7 +91,7 @@ app.use(function(req, res, next){
   next()
 })
 app.use('/', routes);
-// app.use('/leagues', leagues);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

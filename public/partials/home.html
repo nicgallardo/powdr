@@ -1,0 +1,20 @@
+<h3>{{message}}</h3>
+<div ng-repeat='resort in allResorts | filter: search'>
+  <div class='row well'><a ng-href="/{{resort.id}}">
+    <div class='col-md-6 goats'>
+      <h1>{{resort.name}}</h1></a>
+      <p>Annual Snowfall: {{resort.annual_snowfall}}</p>
+      <p>Bottom Elevation: {{resort.bottom_elevation}}</p>
+      <p>Top Elevation: {{resort.top_elevation}}</p>
+      <p>Number of Lifts: {{resort.lift_count}}</p>
+      <p>Number of Runs:{{resort.run_count}}
+      <p>Acreage: {{resort.skiable_acreage}}
+      <a href={{resortInfo.official_website}}> {{resortInfo.name}}</a>
+    </div>
+    <div class= 'col-md-4 tacos'> 
+      <ng-map center="[{{resort.latitude}},{{resort.longitude}}]"></ng-map>
+
+
+    </div>
+  </div>
+</div>
