@@ -13,10 +13,6 @@ router.get('/api/v1/resortData', function(req, res, next) {
   res.json(resortData)
 });
 
-router.get('/api/v1/resortData', function(req, res, next) {
-  res.json(resortData)
-});
-
 router.post('/addFav', function(req, res, next){
   pg.connect(conString, function(err, client, done) {
 
@@ -36,13 +32,11 @@ router.post('/addFav', function(req, res, next){
 router.get('/isFav/:id', function(req, res, next){
   
   pg.connect(conString, function(err, client, done) {
-
     if (err) {
       return console.error('error fetching client from pool', err);
     }
     client.query('SELECT * FROM favorites WHERE (facebook_id = $1 and resort_id = $2);',[req.user.facebookId, req.params.id], function(err, result) {
       done();
-      // console.log(result.rows[0]);
       console.log(result.rows.length);
       if (err) {
         return console.error('error running query', err);
@@ -53,19 +47,18 @@ router.get('/isFav/:id', function(req, res, next){
 
 router.get('/userFavorites', function(req, res, next) {
   pg.connect(conString, function(err, client, done) {
-
     if (err) {
       return console.error('error fetching client from pool', err);
     }
     client.query('SELECT * FROM favorites WHERE (facebook_id = $1);',[req.user.facebookId], function(err, result) {
       done();
-      console.log(result.rows);
+      // console.log(result.rows);
       if (err) {
         return console.error('error running query', err);
       }
-    });
-  });
-  // res.json(req.user)
+      res.json(result.rows)
+    })
+  }) 
 });
 
 router.get('*', function(req, res, next) {
