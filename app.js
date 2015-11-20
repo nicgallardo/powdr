@@ -37,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
-    callbackURL: "http://localhost:3000/auth/facebook/callback",
+    callbackURL: process.env.HOST + "/auth/facebook/callback",
     enableProof: false,
     profileFields: ['id', 'displayName', 'link', 'photos', 'email']
   },
