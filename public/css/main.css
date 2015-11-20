@@ -5,7 +5,10 @@ body{
   -o-background-size: cover;
   background-size: cover;;
   height: 100%;
- font-family: 'Monoton', cursive;
+  font-family: sans-serif;
+}
+.marquee {
+  font-family: 'Monoton', cursive;
 }
 .well{
   opacity: 0.9;
@@ -45,7 +48,7 @@ body{
 }
 h1{
   font-size: 60px;
-}  
+}
 
 
 .Drop{
