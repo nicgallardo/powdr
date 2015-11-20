@@ -34,18 +34,18 @@ app.controller('ResortController', ['$scope', '$http', '$routeParams','$window',
     
     
     console.log($scope.allResorts)
-      $http.get("http://api.worldweatheronline.com/free/v2/ski.ashx?key=21315c00286c7db03c19ff752ba6c&q=" + $scope.resortInfo.latitude +',' + $scope.resortInfo.longitude + "+&format=json").then(function(response){
+      $http.get("https://api.worldweatheronline.com/free/v2/ski.ashx?key=21315c00286c7db03c19ff752ba6c&q=" + $scope.resortInfo.latitude +',' + $scope.resortInfo.longitude + "+&format=json").then(function(response){
       console.log(response.data.data)
       $scope.weather = response.data.data.weather[0]
       $scope.site = response.data.data.request[0]
     })
   
-    $http.get("http://api.wunderground.com/api/2dc07206ff5e682e/geolookup/forecast/q/" + $scope.resortInfo.latitude +',' + $scope.resortInfo.longitude + ".json").then(function(response){
+    $http.get("https://api.wunderground.com/api/2dc07206ff5e682e/geolookup/forecast/q/" + $scope.resortInfo.latitude +',' + $scope.resortInfo.longitude + ".json").then(function(response){
       console.log(response.data.forecast, "Look Over Here!")
       $scope.weatherUnder = response.data.forecast.txt_forecast.forecastday
      
     })
-     $http.jsonp('http://www.flickr.com/services/feeds/photos_public.gne?tags='+ $scope.resortInfo.name +'&format=json')
+     $http.jsonp('https://www.flickr.com/services/feeds/photos_public.gne?tags='+ $scope.resortInfo.name +'&format=json')
     .success(jsonFlickrFeed = function(data) {
       console.log(data)
       $scope.flickrFeed = data.items;
