@@ -1,4 +1,4 @@
-var app = angular.module('powdrApp', ['ngRoute', 'ngMap'])
+var app = angular.module('powdrApp', ['ngRoute', 'ngMap','ngCookies'])
 
 
 app.config(function($routeProvider, $locationProvider) {

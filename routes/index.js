@@ -5,6 +5,7 @@ var pg = require('pg');
 var conString = "postgres://@localhost/powdr";
 
 router.get('/_=_', function(req, res, next) {
+  console.log(req.user);
   res.json(req.user)
 });
 
@@ -38,7 +39,7 @@ router.get('/isFav/:id', function(req, res, next){
     if (err) {
       return console.error('error fetching client from pool', err);
     }
-    client.query('SELECT * favorites(facebook_id, resort_id) VALUES($1, $2);',[req.user.facebookId, req.params.id], function(err, result) {
+    client.query('SELECT * FROM favorites WHERE (facebook_id, resort_id) VALUES($1, $2);',[req.user.facebookId, req.params.id], function(err, result) {
       done();
       console.log(result);
       // console.log(result.rows[0].length);

@@ -1,29 +1,35 @@
 
 
 
-app.controller('HomeController', ['$scope', '$http','$window','$rootScope', function ($scope, $http, $location, $rootScope, NgMap) {
-
+app.controller('HomeController', function ($scope, $http, $location, $rootScope, NgMap, $cookies) {
 
   $http.get('/api/v1/resortData').then(function (response) {
     $scope.allResorts = response.data;
   });
+  
   $scope.message = 'All Resorts Page'
+
   $http.get('/_=_').then(function (response) {
-    $rootScope.user = response.data;
-    }).then(function () {
-      console.log($rootScope.user);
-    })
-}]);
+    $cookies.put('facebookId', response.data.facebookId);
+    $cookies.put('firstName', response.data.firstName);
+    $cookies.put('lastName', response.data.lastName);
+    $scope.user = $cookies.getAll()
+    console.log(response.data);
+    console.log($scope.user);
+  })
+});
 
-app.controller('UserController', ['$scope', '$http', '$routeParams', '$window', '$rootScope', function($scope, $http, $routeParams, $rootScope, $window){
+app.controller('UserController', function($scope, $http, $routeParams, $rootScope, $window){
 
-}])
+})
 
-app.controller('ResortController', ['$scope', '$http', '$routeParams','$window', '$location', '$rootScope', function ($scope, $http, $routeParams, $rootScope, $location, $window, NgMap) {
+app.controller('ResortController', function ($scope, $http, $routeParams, $rootScope, $location, $window, NgMap, $cookies) {
+  $scope.user = $cookies.getAll()
   $scope.resortId = $routeParams.resortId;
-  console.log($location.path());
-
+  // console.log($location.path());
+  console.log($scope.user);
   $http.get('/isfav' + $location.path()).then(function (response){
+    // console.log($scope.isfav);
     $scope.isfav = response.data;
   })
 
@@ -36,7 +42,7 @@ app.controller('ResortController', ['$scope', '$http', '$routeParams','$window',
       }
     }
 
-    console.log($scope.allResorts)
+    // console.log($scope.allResorts)
     //   $http.get("http://api.worldweatheronline.com/free/v2/ski.ashx?key=21315c00286c7db03c19ff752ba6c&q=" + $scope.resortInfo.latitude +',' + $scope.resortInfo.longitude + "+&format=json").then(function(response){
     //   console.log(response.data.data)
     //   $scope.weather = response.data.data.weather[0]
@@ -50,7 +56,7 @@ app.controller('ResortController', ['$scope', '$http', '$routeParams','$window',
     // })
      $http.jsonp('http://www.flickr.com/services/feeds/photos_public.gne?tags='+ $scope.resortInfo.name +'&format=json')
     .success(jsonFlickrFeed = function(data) {
-      console.log(data)
+      // console.log(data)
       $scope.flickrFeed = data.items;
      
     })
@@ -60,4 +66,4 @@ app.controller('ResortController', ['$scope', '$http', '$routeParams','$window',
 
   $scope.message = 'Single Resort Page'
 
-}]);
+});

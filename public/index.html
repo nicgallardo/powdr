@@ -10,6 +10,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-cookies.js"></script>
     <script src="http://maps.google.com/maps/api/js"></script>
     <script src="./js/angularapp.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular-animate.js"></script>     
@@ -28,7 +29,7 @@
 
 
    <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
+  <div class="container-fluid" ng-controller="HomeController">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
@@ -63,12 +64,23 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/auth/facebook" target="_self"> login with
-        <span>
-          <img src="/images/facebook_logo.png" width="20px">
-        </span></li>
-        <form class="navbar-form navbar-right" role="search">
-        <li><a href="/logout" target="_self">logout</a></li>
+        <li>
+          <a href="/auth/facebook" ng-hide="user.firstName" target="_self"> login with
+            <span>
+              &nbsp; &nbsp;
+              <img src="/images/facebook_logo.png" width="20px">
+            </span>
+          </a>
+        </li>
+        <form class="navbar-form navbar-right" role="search"></form>
+        <li>
+          <a href="/logout" ng-show="user.firstName" target="_self"> logout with
+            <span>
+              &nbsp; &nbsp;
+              <img src="/images/facebook_logo.png" width="20px">
+            </span>
+        </a>
+        </li>
       </ul>
     </div>
   </div>
