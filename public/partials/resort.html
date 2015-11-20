@@ -1,20 +1,20 @@
 <div class="well">
 
         <li class="dropdown Drop">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><span class="btn btn-primary dropdown-toggle">Choose a Ski Area</span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><span class="btn dropdown-toggle">Choose a Ski Area</span></a>
          
           <ul class="dropdown-menu DropDown">
             <li ng-repeat='resort in allResorts'><a ng-href="/{{resort.id}}">{{resort.name}}</a></li>
           </ul>
         </li>
        </ul>
-       <span>
+ <h1> {{resortInfo.name}}   <img src={{weather.hourly[7].top[0].weatherIconUrl[0].value}}> </h1>
+       <span class="addFav" class="text-right">
        <form method="post" action="/addFav/">
         <input type="hidden" value="{{resortInfo.id}}" name="resortId">
-        <input type="submit" value="Add to resorts">
+        <button type="submit" value="Add to resorts">Add to resorts</button>
       </form>
       </span>
- <h1> {{resortInfo.name}}   <img src={{weather.hourly[7].top[0].weatherIconUrl[0].value}}> </h1>
 </div>
       <div class="well col-md-4 resortInfo">
         <p>Location: {{resortInfo.name}}</p>
@@ -35,7 +35,7 @@
         <a href=({{resortInfo.official_website}}) > {{resortInfo.name}}</a>
          
        
->>>>>>> dev
+
       </div>
     <div class="well col-md-4 weather">
       <h5>Long Term Forecast</h5>
@@ -48,14 +48,12 @@
       <p>{{weatherUnder[6].title}}: {{weatherUnder[6].fcttext}}</p>
       <p>{{weatherUnder[7].title}}: {{weatherUnder[7].fcttext}}</p>
     </div>
+
     <div class="well col-md-4 maps">
-
-
-
-        <ng-map center="[{{resortInfo.latitude}},{{resortInfo.longitude}}]"></ng-map>
-
-
+      <ng-map center="[{{resortInfo.latitude}},{{resortInfo.longitude}}]"></ng-map>
     </div>
+
+    
     <div class="well col-md-12 flickr">
       <h5>{{resortInfo.name}} Flickr Feed</h5>
       <img src={{flickrFeed[0].media.m}}>
