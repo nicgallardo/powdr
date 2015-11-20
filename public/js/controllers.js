@@ -14,20 +14,23 @@ app.controller('HomeController', function ($scope, $http, $location, $rootScope,
     $cookies.put('firstName', response.data.firstName);
     $cookies.put('lastName', response.data.lastName);
     $scope.user = $cookies.getAll()
-    console.log(response.data);
-    console.log($scope.user);
+    // console.log(response.data);
+    // console.log($scope.user);
   })
 });
 
 app.controller('UserController', function($scope, $http, $routeParams, $rootScope, $window){
-
+  $scope.user = $cookies.getAll();
+  $http.get('/userFavorites').then(function (response) {
+    $scope.favorites = response.data
+    console.log($scope.favorites);
+  })
 })
 
 app.controller('ResortController', function ($scope, $http, $routeParams, $rootScope, $location, $window, NgMap, $cookies) {
   $scope.user = $cookies.getAll()
   $scope.resortId = $routeParams.resortId;
   // console.log($location.path());
-  console.log($scope.user);
   $http.get('/isfav' + $location.path()).then(function (response){
     // console.log($scope.isfav);
     $scope.isfav = response.data;
