@@ -14,9 +14,7 @@ app.controller('HomeController', ['$scope', '$http','$window','$rootScope', func
       console.log($rootScope.user);
     })
 }]);
-app.controller('NavController',['$scope','$rootScope', function($scope, $rootScope){
 
-}])
 
 app.controller('ResortController', ['$scope', '$http', '$routeParams','$window', '$rootScope', function ($scope, $http, $routeParams, $rootScope, $window, NgMap) {
   $scope.resortId = $routeParams.resortId;
