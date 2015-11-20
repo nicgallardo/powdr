@@ -5,6 +5,7 @@ body{
   -o-background-size: cover;
   background-size: cover;;
   height: 100%;
+ font-family: 'Monoton', cursive;
 }
 .well{
   opacity: 0.9;
@@ -13,9 +14,11 @@ body{
   width: 19%;
   height: 150px;
   text-align: center;
+  z-index: -1;
 }
 .maps{
   height: 500px;
+  z-index: -1;
 }
 .goats{
   float: left;
@@ -28,4 +31,25 @@ body{
 .text-white {
   font-size: 14px;
   color: white
+}
+
+.DropDown {
+
+  margin-top: 0px;
+  z-index: 999;
+}
+.flickr, .weather, .resortInfo, .maps{
+  z-index: -1;
+  font-size: 20px;
+  font-family: 'Anton', sans-serif;
+}
+h1{
+  font-size: 60px;
+}  
+
+
+.Drop{
+  float: right;
+  z-index: 999;
+
 }

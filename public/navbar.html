@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -26,7 +27,7 @@
         <li ng-if="!user"><a href="/auth/facebook" target="_self"> login with
         <span>
           <img src="/images/facebook_logo.png" width="20px">
-        </span></li>
+        </span>{{search}}</li>
         <form class="navbar-form navbar-right" role="search">
         <li ng-if="user"><a href="/logout" target="_self">logout</a></li>
       </ul>
