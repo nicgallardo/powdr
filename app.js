@@ -10,7 +10,7 @@ var passport = require('passport');
 require('dotenv').load();
 passport.authenticate();
 var pg = require('pg');
-var conString = "process.env.DATABASE_URL || postgres://@localhost/powdr";
+var conString = process.env.DATABASE_URL || "postgres://@localhost/powdr";
 
 var routes = require('./routes/index');
 
