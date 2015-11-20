@@ -1,4 +1,4 @@
-var app = angular.module('powdrApp', ['ngRoute', 'ngMap'])
+var app = angular.module('powdrApp', ['ngRoute', 'ngMap','ngCookies'])
 
 
 app.config(function($routeProvider, $locationProvider) {
@@ -10,6 +10,10 @@ app.config(function($routeProvider, $locationProvider) {
       .when('/', {
         templateUrl: '/partials/home.html',
         controller: 'HomeController'
+      })
+      .when('/user', {
+        templateUrl: '/partials/user.html',
+        controller: 'UserController'
       })
       .when('/:resortId', {
         templateUrl: '/partials/resort.html',

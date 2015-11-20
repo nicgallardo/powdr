@@ -1,11 +1,14 @@
 body{
-  background: url('http://www.independentskiermag.com/blog/wp-content/uploads/2014/05/13-J-011_2100x1400_300_RGB.jpg')no-repeat center center fixed; 
+  background: url('http://www.independentskiermag.com/blog/wp-content/uploads/2014/05/13-J-011_2100x1400_300_RGB.jpg')no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;;
   height: 100%;
-  
+  font-family: sans-serif;
+}
+.marquee {
+  font-family: 'Monoton', cursive;
 }
 .well{
   opacity: 0.9;
@@ -27,20 +30,41 @@ body{
   float: right;
   width: 40%;
 }
+
+.text-white {
+  font-size: 14px;
+  color: white
+}
+
 .DropDown {
 
   margin-top: 0px;
   z-index: 999;
 }
-.flickr, .weather, .resortInfo{
+.flickr, .weather, .resortInfo, .maps{
   z-index: -1;
+  font-size: 20px;
+  font-family: 'Anton', sans-serif;
 }
-  
+h1{
+  font-size: 30px;
+}
 
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+img {
+    vertical-align: middle;
+}
 
 .Drop{
-  position: absolute;
+  float: right;
   z-index: 999;
-  top:20%;
-  left:80%;
+
+}
+
+p {
+  font-family: sans-serif; 
 }
