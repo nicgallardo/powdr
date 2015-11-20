@@ -19,7 +19,7 @@ app.controller('HomeController', function ($scope, $http, $location, $rootScope,
   })
 });
 
-app.controller('UserController', function($scope, $http, $routeParams, $rootScope, $window){
+app.controller('UserController', function($scope, $http, $routeParams, $rootScope, $window, $cookies){
   $scope.user = $cookies.getAll();
   $http.get('/userFavorites').then(function (response) {
     $scope.favorites = response.data
