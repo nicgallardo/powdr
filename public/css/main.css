@@ -5,7 +5,7 @@ body{
   -o-background-size: cover;
   background-size: cover;;
   height: 100%;
-  
+ font-family: 'Monoton', cursive;
 }
 .well{
   opacity: 0.9;
@@ -32,15 +32,18 @@ body{
   margin-top: 0px;
   z-index: 999;
 }
-.flickr, .weather, .resortInfo{
+.flickr, .weather, .resortInfo, .maps{
   z-index: -1;
+  font-size: 20px;
+  font-family: 'Anton', sans-serif;
 }
-  
+h1{
+  font-size: 60px;
+}  
 
 
 .Drop{
-  position: absolute;
+  float: right;
   z-index: 999;
-  top:20%;
-  left:80%;
+
 }

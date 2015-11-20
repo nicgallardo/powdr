@@ -15,7 +15,7 @@
       <div class="well col-md-4 resortInfo">
         <p>Location: {{resortInfo.name}}</p>
         <p>Date: {{weather.date}}</p>
-        <p>Total Snowfall CM: {{weather.totalSnowfall_cm}}</p>
+        <p>Total Snowfall: {{weather.totalSnowfall_cm * .39 | number:2}}</p>
         <p>Bottom Max Temp: {{weather.bottom[0].maxtempF}}</p>
         <p>Bottom Min Temp: {{weather.bottom[0].mintempF}}</p>
         <p>Top Max Temp: {{weather.top[0].maxtempF}}</p>
@@ -24,11 +24,11 @@
         <p>Wind Direction: {{weather.hourly[7].top[0].winddir16Point}}</p>
         <p>Wind Speed: {{weather.hourly[7].top[0].windspeedMiles}}</p>
         <p>Tonight's low: {{weather.hourly[7].top[0].tempF}}</p>
-        <p>Annual Snowfall: {{resortInfo.annual_snowfall}}</p>
-        <p>Bottom Elevation: {{resortInfo.bottom_elevation}}</p>
-        <p>Top Elevation: {{resortInfo.top_elevation}}</p>
+        <p>Annual Snowfall: {{resortInfo.annual_snowfall * .39 | number:2}}</p>
+        <p>Bottom Elevation: {{resortInfo.bottom_elevation * 3.28084 | number:2}}</p>
+        <p>Top Elevation: {{resortInfo.top_elevation * 3.28084 | number:2}}</p>
         <p>Number of Lifts: {{resortInfo.lift_count}}</p>
-        <a href={{resortInfo.official_website}}> {{resortInfo.name}}</a>
+        <a href=({{resortInfo.official_website}}) > {{resortInfo.name}}</a>
          
        
       </div>
